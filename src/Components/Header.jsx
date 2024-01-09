@@ -1,13 +1,19 @@
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 
 const Header = () => {
   const todos = useSelector((store) => store.todo);
   const dispatch = useDispatch();
+  const [lang, setLang] = useState("UZ")
 
   const toggleSidebar = () => {
     dispatch({ type: "TOGGLE_SIDEBAR" });
   };
+
+  const handleLang=() => {
+    setLang("ENG")
+  }
 
   return (
     <header className="text-bg-primary py-3">
@@ -16,6 +22,10 @@ const Header = () => {
           <i className="fa-solid fa-bars"></i>
         </button>
         <ul className="list-unstyled d-flex w-50 justify-content-between align-items-center m-0">
+          <li>
+          <button className="btn btn-info" onClick={handleLang}>{lang}
+        </button>
+          </li>
           <li>
             <Link className="text-reset text-decoration-none" to={"/main"}>
               Main home
